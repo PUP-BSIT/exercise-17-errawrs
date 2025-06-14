@@ -1,0 +1,136 @@
+Python Code Review - INTE202
+Date: June 14, 2025
+________________________________________
+Common Issues Across Files
+1.	Missing space before function definition
+Files/Line Numbers:
+o	aragon.py: https://github.com/PUP-BSIT/exercise-15-gtech/blob/9307b8459e90317ef9b4442d70849b92c758d090/gtech/aragon.py#L112  (def clear)
+o	dimayuga.py: https://github.com/PUP-BSIT/exercise-15-gtech/blob/9307b8459e90317ef9b4442d70849b92c758d090/gtech/dimayuga.py#L106 (def character_profile)
+o	lim.py: https://github.com/PUP-BSIT/exercise-15-gtech/blob/9307b8459e90317ef9b4442d70849b92c758d090/gtech/lim.py#L14
+(def clear_screen)
+o	lopez.py: https://github.com/PUP-BSIT/exercise-15-gtech/blob/9307b8459e90317ef9b4442d70849b92c758d090/gtech/lopez.py#L36 (def clear_screen)
+o	romero.py: https://github.com/PUP-BSIT/exercise-15-gtech/blob/9307b8459e90317ef9b4442d70849b92c758d090/gtech/romero.py#L24 (def clear_screen)
+o	main.py: https://github.com/PUP-BSIT/exercise-15-gtech/blob/9307b8459e90317ef9b4442d70849b92c758d090/main.py#L26 (def clear_screen)
+
+Issue: Violates guideline on page 5: "Add space before and after a function definition."
+Should be: Add a blank line before each function definition.
+2.	Violation of while True loop guideline
+Files/Line Numbers:
+o	aragon.py: https://github.com/PUP-BSIT/exercise-15-gtech/blob/9307b8459e90317ef9b4442d70849b92c758d090/gtech/aragon.py#L317 (menu)
+o	dimayuga.py: https://github.com/PUP-BSIT/exercise-15-gtech/blob/9307b8459e90317ef9b4442d70849b92c758d090/gtech/dimayuga.py#L477 (menu)
+o	lim.py: https://github.com/PUP-BSIT/exercise-15-gtech/blob/9307b8459e90317ef9b4442d70849b92c758d090/gtech/lim.py#L36 (menu)
+o	lopez.py: https://github.com/PUP-BSIT/exercise-15-gtech/blob/9307b8459e90317ef9b4442d70849b92c758d090/gtech/lopez.py#L156 (menu)
+o	romero.py: https://github.com/PUP-BSIT/exercise-15-gtech/blob/9307b8459e90317ef9b4442d70849b92c758d090/gtech/romero.py#L119 (menu)
+o	main.py: https://github.com/PUP-BSIT/exercise-15-gtech/blob/9307b8459e90317ef9b4442d70849b92c758d090/main.py#L38 (main)
+
+Issue: Lacks comment explaining exit condition, violating page 19: "When using a fixed True condition in loops, make sure the reader can identify right away when to exit the loop by writing code comment."
+Should be: Add comment, e.g., # Loop until user selects exit option.
+3.	Magic string in input prompt
+Files/Line Numbers:
+o	aragon.py:  https://github.com/PUP-BSIT/exercise-15-gtech/blob/9307b8459e90317ef9b4442d70849b92c758d090/gtech/aragon.py#L328 (choice = console.input("Enter your choice: "))
+o	dimayuga.py: https://github.com/PUP-BSIT/exercise-15-gtech/blob/9307b8459e90317ef9b4442d70849b92c758d090/gtech/dimayuga.py#L502 (choice = input("Choose an option: "))
+o	lim.py: https://github.com/PUP-BSIT/exercise-15-gtech/blob/9307b8459e90317ef9b4442d70849b92c758d090/gtech/lim.py#L37 (user_choice = Prompt.ask("[bold light_cyan1]Enter your choice (1-5)"))
+o	lopez.py: https://github.com/PUP-BSIT/exercise-15-gtech/blob/9307b8459e90317ef9b4442d70849b92c758d090/gtech/lopez.py#L164 (choice = int(input("Enter your choice: ")))
+o	romero.py: https://github.com/PUP-BSIT/exercise-15-gtech/blob/9307b8459e90317ef9b4442d70849b92c758d090/gtech/romero.py#L125 (choice = int(input("Enter your choice: ")))
+o	main.py: https://github.com/PUP-BSIT/exercise-15-gtech/blob/9307b8459e90317ef9b4442d70849b92c758d090/main.py#L78 
+(user_input = int(input("Select a team member or exit: ")))
+Issue: Magic strings should be constants, violating page 18: "Replace magic values by constants."
+Should be: Define constants, e.g., MENU_PROMPT = "Enter your choice: ".
+4.	Missing main guard
+Files/Line Numbers:
+o	main.py: L76 (main())
+Issue: Function call at module level without if __name__ == "__main__":, violating page 12: "Imports should usually be on the top of the file and in separate lines."
+Should be:
+5.	if __name__ == "__main__":
+    main()
+________________________________________
+1. aragon.py Review
+Issues Found:
+1.	Inconsistent string formatting https://github.com/PUP-BSIT/exercise-15-gtech/blob/9307b8459e90317ef9b4442d70849b92c758d090/gtech/aragon.py#L159 
+Current: console.print("\n\n[red]Invalid input...[/red]")
+Issue: Excessive \n\n violates page 10: "Remove unnecessary/excessive lines and spacing."
+Should be: Use single \n.
+2.	Wildcard import suggestion https://github.com/PUP-BSIT/exercise-15-gtech/blob/9307b8459e90317ef9b4442d70849b92c758d090/gtech/aragon.py#L1 
+Current: from rich.console import Console, etc.
+Issue: Group imports for clarity, per page 12: "Avoid wildcard imports."
+Should be: from rich import Console, Panel, Text.
+Positive Aspects:
+•	Excellent constants (e.g., MOVIES).
+•	Descriptive function names (e.g., recommend_movies).
+•	Well-formatted dictionaries, per page 9.
+________________________________________
+2. dimayuga.py Review
+Issues Found:
+1.	Inconsistent class naming https://github.com/PUP-BSIT/exercise-15-gtech/blob/9307b8459e90317ef9b4442d70849b92c758d090/gtech/dimayuga.py#L8 
+Current: class RoleplayGame():
+Issue: Not Pascal case, violating page 13: "Class names should be in Pascal case."
+Should be: class RoleplayGame:
+2.	Excessive init parameters https://github.com/PUP-BSIT/exercise-15-gtech/blob/9307b8459e90317ef9b4442d70849b92c758d090/gtech/lim.py#L35 
+Current: 12 parameters in __init__.
+Issue: Reduces readability, violating page 4: "Prioritize code readability."
+Should be: Use configuration dictionary.
+Positive Aspects:
+•	Good constants (e.g., VALID_WEAPONS).
+•	Descriptive function names (e.g., generate_monster).
+•	Clear docstrings, enhancing readability.
+________________________________________
+3. lim.py Review
+Issues Found:
+1.	Inconsistent list formatting https://github.com/PUP-BSIT/exercise-15-gtech/blob/9307b8459e90317ef9b4442d70849b92c758d090/gtech/lim.py#L22 
+Current: SUBJECTS = ["English","Math","Science","Filipino"]
+Issue: No spaces after commas, violating page 5: "Add single space after commas in lists."
+Should be: SUBJECTS = ["English", "Math", "Science", "Filipino"]
+2.	Excessive string concatenation https://github.com/PUP-BSIT/exercise-15-gtech/blob/9307b8459e90317ef9b4442d70849b92c758d090/gtech/lim.py#L254 
+Current: Verbose print with multiple f-strings.
+Issue: Violates page 4: "Prioritize code readability."
+Should be: Use single f-string.
+Positive Aspects:
+•	Good constants (e.g., MIN_GRADE).
+•	Descriptive function names (e.g., add_student).
+•	Proper error handling, per page 14.
+________________________________________
+4. lopez.py Review
+Issues Found:
+1.	Inconsistent dictionary formatting https://github.com/PUP-BSIT/exercise-15-gtech/blob/9307b8459e90317ef9b4442d70849b92c758d090/gtech/lopez.py#L17 
+Current: MOVIE_LIST = {"1": "Inception", ...}
+Issue: One entry per line improves readability, per page 8: "Separate each entry by rows."
+Should be: Format with one key-value pair per line.
+2.	Hardcoded integer menu options https://github.com/PUP-BSIT/exercise-15-gtech/blob/9307b8459e90317ef9b4442d70849b92c758d090/gtech/lopez.py#L128 
+Current: actions = {1: self.show_movies, ...}
+Issue: Use string keys, per page 8: "Use string as a key in dictionary."
+Should be: actions = {"1": self.show_movies, ...}
+Positive Aspects:
+•	Good constants (e.g., TICKET_PRICE).
+•	Descriptive function names (e.g., book_ticket).
+•	Consistent rich library usage.
+________________________________________
+5. romero.py Review
+Issues Found:
+1.	Hardcoded integer menu options https://github.com/PUP-BSIT/exercise-15-gtech/blob/9307b8459e90317ef9b4442d70849b92c758d090/gtech/romero.py#L93 
+Current: actions = {1: self.add_item, ...}
+Issue: Use string keys, per page 8.
+Should be: actions = {"1": self.add_item, ...}
+2.	Excessive string concatenation https://github.com/PUP-BSIT/exercise-15-gtech/blob/9307b8459e90317ef9b4442d70849b92c758d090/gtech/romero.py#L55 
+Current: console.print("[bold magenta]Items:[/bold magenta] " + ", ".join(self.items))
+Issue: Use f-string for readability, per page 4.
+Should be: console.print(f"[bold magenta]Items:[/bold magenta] {', '.join(self.items)}")
+Positive Aspects:
+•	Good constants (e.g., MENU_OPTIONS).
+•	Descriptive function names (e.g., set_temperature).
+•	Simple class structure, per page 16.
+________________________________________
+6. main.py Review
+Issues Found:
+1.	Hardcoded integer dictionary keys https://github.com/PUP-BSIT/exercise-15-gtech/blob/9307b8459e90317ef9b4442d70849b92c758d090/main.py#L15 
+Current: TEAM_MEMBERS_LIST = {1: ("Aragon", ChickFlickRecommender()), ...}
+Issue: Use string keys, per page 8: "Use string as a key in dictionary."
+Should be: TEAM_MEMBERS_LIST = {"1": ("Aragon", ChickFlickRecommender()), ...}
+2.	Magic string in input prompt https://github.com/PUP-BSIT/exercise-15-gtech/blob/9307b8459e90317ef9b4442d70849b92c758d090/main.py#L56 
+Current: owner = input("Enter your name: ")
+Issue: Magic string should be a constant, per page 18.
+Should be: NAME_PROMPT = "Enter your name: "
+Positive Aspects:
+•	Good use of constants (e.g., EXIT_OPTION).
+•	Descriptive function names (e.g., handle_choice).
+•	Proper error handling with try-except, per page 14.
+
