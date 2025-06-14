@@ -1,0 +1,37 @@
+Coding Review - Team Errawrs
+
+Errors:
+
+env - should not be visible in the github repository.
+pycache - should not be visible in the github repository.
+
+Comments/Suggestions:
+
+hobby() should be display_hobby() for consistency.
+https://github.com/PUP-BSIT/exercise-15-voltes-v/blob/ae258f6ff9b003ee8b135dfa3ba339874f29b46a/voltesv/caculitan.py#L16
+https://github.com/PUP-BSIT/exercise-15-voltes-v/blob/ae258f6ff9b003ee8b135dfa3ba339874f29b46a/voltesv/corpus.py#L16
+https://github.com/PUP-BSIT/exercise-15-voltes-v/blob/ae258f6ff9b003ee8b135dfa3ba339874f29b46a/voltesv/gulles.py#L16
+https://github.com/PUP-BSIT/exercise-15-voltes-v/blob/ae258f6ff9b003ee8b135dfa3ba339874f29b46a/voltesv/morales.py#L16
+
+favorite_food() should be display_favorite_food() for consistency.
+https://github.com/PUP-BSIT/exercise-15-voltes-v/blob/ae258f6ff9b003ee8b135dfa3ba339874f29b46a/voltesv/caculitan.py#L19
+https://github.com/PUP-BSIT/exercise-15-voltes-v/blob/ae258f6ff9b003ee8b135dfa3ba339874f29b46a/voltesv/corpus.py#L19
+https://github.com/PUP-BSIT/exercise-15-voltes-v/blob/ae258f6ff9b003ee8b135dfa3ba339874f29b46a/voltesv/gulles.py#L19
+https://github.com/PUP-BSIT/exercise-15-voltes-v/blob/ae258f6ff9b003ee8b135dfa3ba339874f29b46a/voltesv/morales.py#L19
+
+
+Using match-case is cleaner than multiple if-elif statements.
+https://github.com/PUP-BSIT/exercise-15-voltes-v/blob/ae258f6ff9b003ee8b135dfa3ba339874f29b46a/voltesv/corpus.py#L22
+https://github.com/PUP-BSIT/exercise-15-voltes-v/blob/ae258f6ff9b003ee8b135dfa3ba339874f29b46a/voltesv/caculitan.py#L23
+https://github.com/PUP-BSIT/exercise-15-voltes-v/blob/ae258f6ff9b003ee8b135dfa3ba339874f29b46a/voltesv/gulles.py#L23
+https://github.com/PUP-BSIT/exercise-15-voltes-v/blob/ae258f6ff9b003ee8b135dfa3ba339874f29b46a/voltesv/morales.py#L23
+https://github.com/PUP-BSIT/exercise-15-voltes-v/blob/ae258f6ff9b003ee8b135dfa3ba339874f29b46a/voltesv/pineda.py#L23
+
+
+Good practices followed:
+Proper snake_case for variables and methods.
+Descriptive variable names
+Appropriate spacing around operators
+Good use of f-strings for output
+Consistent output formatting with newlines
+Each method has a single responsibility
